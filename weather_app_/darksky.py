@@ -9,7 +9,7 @@ https://darksky.net/poweredby/
 """
 
 def index(coordinates):
-	url = "https://api.darksky.net/forecast/bb04f6fe6c344b6e31af5f66f0760f6e/{}".format(coordinates)
+	url = "https://api.darksky.net/forecast/ENTER_YOUR_API_KEY_HERE/{}".format(coordinates)
 	api_val = requests.get(url).json()
 	"""	
 	temp, any percipitation, 
