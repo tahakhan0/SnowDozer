@@ -5,7 +5,7 @@ from sqlalchemy.exc import IntegrityError
 import time, psycopg2
 
 app = Flask(__name__)
-url_database = 'postgres://wlxqrlsrqngumy:22719b920834dd3d091a25bdc31fd3558bb23dfcd5da4db4f501ae743821fdb5@ec2-54-83-61-142.compute-1.amazonaws.com:5432/dfjg7je2a9sd6u?sslmode=require'
+url_database = "Provide_your_database_credentials_here"
 app.config['SQLALCHEMY_DATABASE_URI'] = url_database
 app.config['SECRET_KEY'] = 'super_secret_key'
 app.config['DEBUG'] = True
