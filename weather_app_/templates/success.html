@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<!-- Source of bootstrap links and html code
+	https://www.w3schools.com/bootstrap/bootstrap_panels.asp
+!-->
+<html>
+<head>
+	<title>Success</title>
+  <meta charset="utf-8"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+  <style type="text/css">
+  	.row{
+   	transform: translateX(13.8%) translateY(-5%);
+    width: 80%;
+    /*height: auto;*/
+	} 
+	.panel > .panel-heading {
+    background-image: none;
+    background-color:#0464D4;
+    color: white;
+	}
+	.container {
+  	width: 100%;
+    height: auto;
+    padding-bottom: 30px;
+    padding-left: 150px;
+    padding-right: 180px; 
+  	}
+  	.pull-left{
+  		padding-bottom: 30px;
+  	}
+  	.row{
+  		font-family: 'Roboto', sans-serif;
+  		color: black;
+  	}
+    .pull-left1{
+      margin-left: 200px;
+    }
+    #myDIV{
+      display: none;
+      padding-top: 5px;
+    }
+    #text_myDIV{
+      padding-top: 10px;
+    }
+    .result{
+      font-family: 'Roboto', sans-serif;
+      color: black;
+    }
+  </style>
+</head>
+<body> 
+<div class="container">
+	<div class="pull-left">
+    	<h1>Control Dashboard</h1> 
+    	<p>Selecting the Automated option will turn on/off the system based on it's calculations. If the User option is selected, the user has to manually turn on or off the pi. The system will automatically reset after a period of 15 minutes to conserve energy. </p>
+         <form action = "{{url_for('result')}}" method="post">
+          <input type="submit" name="submit-button" onclick="myFunction2()" value="Automated" class="btn btn-primary">
+         <input type="button" onclick="myFunction()" value="User" class="btn btn-danger">
+              <strong><div id="text_myDIV" class='status'>Select an option</div></strong>
+              <div id="myDIV" class = "pull-left1">
+              <input type="submit" name="submit-button" value="Turn On" class="btn btn-success">
+              <span id="space_"></span>
+              <input type="submit" value="Turn Off" name="submit-button" class="btn btn-danger">
+              <strong><div class="status2">Pi Controls</div></strong> 
+              </div>  
+        </form>
+    </div>
+    </div>
+	
+	<div class = "row">
+		<div class = "col-md-4">
+		<div class = "panel panel-primary">
+			<div class = "panel-heading">
+				<h1 class = "panel-title">Database</h1>
+			</div>
+			<div class = "panel-body">
+				{% for weather in myWeather%}
+				<p> Local Date and Time: {{weather.time}}</p>
+				<p>Local Temperature: {{weather.temperature}}&#176C</p>
+				<p>Summary: {{weather.icon}}</p>
+				<p>Chances of precipitation: {{weather.percipitation}}%</p>
+				{%endfor%} 
+			</div>
+		</div>
+		</div>
+		
+		<div class = "col-md-4">	
+		<div class = "panel panel-primary">
+			<div class = "panel-heading">
+				<h1 class = "panel-title">System Information</h1>
+			</div>
+			<div class = "panel-body">
+        <p>System is {{user}}</p>
+        <p>Pi is scheduled to be: {{pi_status}}</p>
+			</div> 
+		</div>
+		</div>
+		<div class = "col-md-4">
+		<div class = "panel panel-primary">
+			<div class = "panel-heading">
+				<h1 class = "panel-title"> Heater Status </h1>
+			</div>
+			<div class = "panel-body">
+        <strong><p id=result></p></strong>
+			</div>
+      <div class="panel-footer">
+        <!--<button id="xy">Click here to update pi's status</button> !-->
+        <p>To update Pi's status    <button class="btn btn-primary" id="xy">Click here </button></p>
+      </div>
+		</div>		
+		</div>
+	</div>
+  <script>
+function myFunction() {
+  var x = document.getElementById("myDIV");
+  document.getElementById('text_myDIV').innerHTML="User control enabled";
+  if (x.style.display === "block") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "block";
+  };
+};
+
+function myFunction2() {
+  var a = document.getElementById('text_myDIV').innerHTML = "Automated control enabled"
+};
+
+  $(function() {
+        $('#xy').bind('click', function() {
+        $.get('/update_data', function(data) {
+          console.log(data);
+          $("#result").text(data.result);
+        });
+        return false;
+        });
+      });
+
+</script>
+</body>
+</html>

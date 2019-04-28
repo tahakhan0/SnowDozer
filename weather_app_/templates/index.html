@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>SnowDozer</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+  <style>
+.jumbotron {	
+  background-color: #0464D4;
+  color: #fff;
+  padding: 100px ;
+}
+
+.jumbotron h1{
+	font-family: 'Pacifico', cursive;
+}
+.container-fluid {
+  padding-left: 150px;
+  padding-right: 100px;
+  margin-top: -25px;
+}
+.logo {
+  font-size: 200px;
+  align-self: right;
+}
+@media screen and (max-width: 768px) {
+  .col-sm-4 {
+    text-align: center;
+    margin: 25px 0;
+  }
+}
+.input-group{
+	display: block;
+	text-align: center;
+	max-width: 390px;
+}
+.form-inline{
+	display: inline-block;
+	text-align: left;
+}
+p1{
+	font-size: 16px;
+}
+.icon_snowflake{
+	font-size: 200px;
+}
+.col-sm-4{
+	padding-right: 100px; 
+	margin-top: -50px;
+	align-self: center;
+}
+p2{
+  font-size: 16px;
+ }
+</style>
+</head>
+<body>
+  <div class="jumbotron text-center">
+  <h1>SnowDozer</h1> 
+  <p>The easier way to melt ice</p> 
+  <form class="form-inline" action="{{url_for('success')}}" method= "POST">
+    <div class="input-group">
+      <input type="text" name ="Coordinates_html" class="form-control" size="50" placeholder="Enter your coordinates: 42(latitude),-72.068(longitude)" required>
+      <div class="input-group-btn">
+        <a href= "#" id = "process_input"><button type="button" class="btn btn-danger">Submit</button></a>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-8">
+      <h2>How does it work?</h2>
+      <p1>
+      		We combine data from your coordinates and check with the data received from the sensors. If the temperature is below 0&#176 Celsius and the precipitation form is snow or ice, the system is ready to turn on. The user can decide to either let the autonomous system decide for them or to control it by themselves. 
+      </p1>
+    </div>
+    <div class="col-sm-4">
+      	<span class = "icon_snowflake"> &#10052 </span>
+    			</div>
+	  		</div>
+</div>
+<div align="center"><strong><p2> Powered by Darksky.net</p2></div></strong>
+</body>
+</html>
