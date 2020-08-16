@@ -12,3 +12,5 @@ is to allow the users to remotely access their raspberry pi and start melting sn
      seamless experience to the user. 
   3) Templates folder
      The templates provide the front end code of the website. It contains css snippets from bootstrap and W3Schools. 
+
+Link to the application: https://data-collector-ece.herokuapp.com/
