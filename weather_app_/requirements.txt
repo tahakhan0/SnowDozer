@@ -1,6 +1,6 @@
 requests==2.20.1
 Flask_SQLAlchemy==2.3.2
-Flask==1.0
+Flask==2.2.5
 SQLAlchemy==1.2.18
 gunicorn==19.4.5
 itsdangerous==0.24
